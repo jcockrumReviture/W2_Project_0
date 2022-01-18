@@ -1,5 +1,9 @@
-/* On First Run: Auto Call Paramaters */
-// On Open: Set a global Var from Date to Auto Seprate by TS_5_Param
+/*  On First Run: 
+        Auto Call to set the Paramaters 
+    On Open: 
+        Set a global Var from Date to Auto Seprate by TS_5_Param
+        Print out the 3 Timesheet Paramaters
+*/
 
 /* Prompt avadable Commands - exe loop */  
     /*1 Punch  - TS_2_Punch */ 
@@ -29,9 +33,7 @@ NOTES
             Convert to Decimal Time?
     On Date:
         What Format?
-
     Use SQL DateTime instead?
-
     Refence table for # days in month unless there is a fucntion for that
 
 */
