@@ -1,4 +1,5 @@
 class TS_2A_InPunch {
+// Future Data entry is blocked because there is no access by the use to enter a time
 
 /* Print To Screen */
 // "Today is "{Date = Now}
