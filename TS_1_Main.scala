@@ -10,11 +10,11 @@
         // 1 Date (Default Now)
     /*3 Print Timesheet - TS_4_TSP */
         //1 print Current Timesheet (Default Now)
-        //2 list old timesheet (Date = List of)
-        //3 Select and print old timesheet (Enter Date )
+        //2 Select by Date (Entered Date)
+        //3 list old timesheet (Date = List of)
     /*4 Timesheet Paramaters  - TS_5_Param*/
         //1 Timesheet Cutoff {Day of Week -> Default Friday}
-        //2 TimeSheet Range {Weekly, BiWeekly, Monthly  -> Default Weekly}
+        //2 TimeSheet Range {Weekly, BiWeekly, BiMonthly, Mothly-> Default Weekly}
         //3 Default Lunch {.5,1,1.5,2}
     /*5 Exit */
         // Cleanup and Close (Close DB connection, files, etc)
@@ -31,5 +31,7 @@ NOTES
         What Format?
 
     Use SQL DateTime instead?
+
+    Refence table for # days in month unless there is a fucntion for that
 
 */
