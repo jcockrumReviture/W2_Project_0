@@ -16,7 +16,7 @@
         //1 print Current Timesheet (Default Now)
         //2 Select by Date (Entered Date)
         //3 list old timesheet (Date = List of)
-    /*4 Timesheet Paramaters  - TS_5_Param*/
+    /*4 Timesheet Paramaters - TS_5_Param*/
         //1 Timesheet Cutoff {Day of Week -> Default Friday}
         //2 TimeSheet Range {Weekly, BiWeekly, BiMonthly, Mothly-> Default Weekly}
         //3 Default Lunch {.5,1,1.5,2}

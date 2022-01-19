@@ -1,6 +1,8 @@
 class TS_5_Param {
 
 /* 
+    Output warning: Changing these values will change All reporting of past records
+
     1 Timesheet Cutoff {Day of Week -> Default Friday}
         Capture Value and write to DB
         prompt " Enter your cutoff day: 1 Sat 2 Sun ... 7 Fri"
