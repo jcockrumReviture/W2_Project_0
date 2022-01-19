@@ -2,16 +2,21 @@
 ## A Scala CLI application over MySql db.
 When working from home or on a consulting job it is often difficult to generate an accurate timesheet at the end of work. 
 
-## This program will accept 2 diffrent input types:
+## Data Origization
 - There are 4 punches avadable In, Lunch Out, Lunch In, Out
+- a group of 4 punches will be a row in the DB
+###### Timesheet Paramaters 
+- This is where you enter or change the default values of the Timesheet reporting.
+- Warning: at this time, changes to these paramaters will alter ALL reporting.
+- Also in this section will be the employee ID, which will serve as half of the PK
 
+## This program will accept 2 diffrent input types:
 ###### a "live" punch 
 - If you are clocking in what times your upcomming breaks and clock times are.
 - If you are clocking out, how many hours have been logged.
-- each punch will be a row in the DB
 
 ###### a "hours" punch
-- for this punch you will enter a start time, which will give you the time of what hours you should have punched in and out based on a standard work day split
+- for this style you will enter a start time, which will then give you the next time of what hours you should have punched in and out based on a standard work day split
 - This type of punch will be used to correct entered punches
 
 ## This Program will output in 3 ways:
@@ -19,5 +24,4 @@ When working from home or on a consulting job it is often difficult to generate 
 - You can select a timesheet by Date.
 - You can show a list of completed Timesheet dates.
 
-There is a Third section, which is the Timesheet Paramaters. This is where you enter or change the default values of the Timesheet reporting.
 

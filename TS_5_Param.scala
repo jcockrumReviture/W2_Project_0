@@ -20,6 +20,9 @@ class TS_5_Param {
 
     3 Default Lunch period {.5,1,1.5,2}
         Capture Value and write to DB
+
+    4 Employee ID
+        Capure a Value to use as the PK.
  */
 
 }
