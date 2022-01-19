@@ -2,7 +2,7 @@
 ## A Scala CLI application over MySQL.
 When working from home or on a consulting job it is often difficult to generate an accurate timesheet at the end of work.
 
-## Data Origization
+## Data origization
 - There are 4 punches available: _In_, _Lunch Out_, _Lunch In_, _Out_
 - a group of 4 punches will be a row in the DB
 ###### Timesheet Parameters
@@ -20,7 +20,7 @@ When working from home or on a consulting job it is often difficult to generate 
   - Hours defaults to a _standard_ work day split
 - This type of punch is used to correct entered punches
 
-## This Program will output in 3 ways:
+## This program will output in 3 ways:
 - The default action is to display the Timesheet of the current period.
 - You can select a timesheet by Date.
 - You can show a list of completed Timesheet dates.
