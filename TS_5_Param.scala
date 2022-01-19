@@ -23,6 +23,9 @@ class TS_5_Param {
 
     4 Employee ID
         Capure a Value to use as the PK.
+
+    5 *Not Implamented, but should go here * Standard workday hours
+        //Current *unchangeable* defalt is 8    
  */
 
 }
