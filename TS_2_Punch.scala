@@ -5,6 +5,9 @@ class TS_2A_InPunch {
 // "Today is "{Date = Now}
 // "The time is "{Time = Time of entry to screen}
 // "You are clocked " + {State} 
+// "IF {state <> OUT} your next Clock time is {calculation}"
+// Else "you worked {Calculation} hours."
+
 // "Press 1 to Enter Punch, 2 to exit"
     //IF ioCapture <> 1 Then RetMain
     //test state - Read State from DB {Date = Now, State}
