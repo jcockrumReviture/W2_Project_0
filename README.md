@@ -16,8 +16,8 @@ When working from home or on a consulting job it is often difficult to generate 
 - If you are clocking out, how many hours have been logged.
 ###### a "hours" punch
 - To create a Hours record: 
--- enter a start time, which will then give you the next time of what hours you should have punched in and out 
--- Hours defaults to a _standard_ work day split
+  - enter a start time, which will then give you the next time of what hours you should have punched in and out 
+  - Hours defaults to a _standard_ work day split
 - This type of punch is used to correct entered punches
 
 ## This Program will output in 3 ways:
