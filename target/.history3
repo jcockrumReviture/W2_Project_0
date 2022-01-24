@@ -8,3 +8,7 @@
 1643041215394:~compile
 1643041280783:scalaVersion
 1643041306255:set ThisBuild / scalaVersion := "2.12.15"
+1643042402035:com.mysql.jdbc.Driver
+1643042411298:quit
+1643042412667:exit
+1643042436454:com.mysql.jdbc.Driver
