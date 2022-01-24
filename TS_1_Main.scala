@@ -69,13 +69,28 @@ Object TS(
                 println("3 Peroid of Lunch time")
                 val j = readLine("Please Choose")
                 j match {
-                    case 1  => TS_4_TSP( passDate )
-                    case 2  => { 
-                    val newDate = readLine("Enter Another Date if needed: yyyy/mm/dd")
-                    val passDate =LocalDate.parse(newDate)
-                    TS_4_TSP( passDate )
+                    case 1  => {
+                        println("Please choose a day of the Week")
+                        int k = readLine("Please Choose")
+                        if 1 to 7 contains k
+                        then TS_5_Param(1, int k = dateTime.getDayOfWeek())
+                        Else println("Choose wisely next time")    
                     }
-                    Case 3  => TS_4_TSP()
+                         
+
+                        
+                    }
+                    case 2  =>{
+
+
+
+                        TS_5_Param(2, passParam)
+                    }
+                    Case 3  => {
+                        
+
+                        TS_5_Param(3, passParam)
+                    }
                 }
             }  
             case _  => println("Select a diffrent option please")
