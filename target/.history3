@@ -1,0 +1,5 @@
+1643039867077:libraryDependencies ++= Seq(
+1643039889041:)cls
+1643039890438:clear
+1643039955051:libraryDependencies ++= Seq("org.postgresql" % "postgresql" "9.3-1102-jdbc41","org.apache.commons" % "commons-dbcp2" % "2.0.1")
+1643039998806:import java.sql.DriverManager
