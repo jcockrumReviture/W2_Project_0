@@ -3,3 +3,8 @@
 1643039890438:clear
 1643039955051:libraryDependencies ++= Seq("org.postgresql" % "postgresql" "9.3-1102-jdbc41","org.apache.commons" % "commons-dbcp2" % "2.0.1")
 1643039998806:import java.sql.DriverManager
+1643041058915:scalaVersion
+1643041118679:touch build.sbt
+1643041215394:~compile
+1643041280783:scalaVersion
+1643041306255:set ThisBuild / scalaVersion := "2.12.15"
