@@ -18,7 +18,7 @@ object tsMain extends App{
         println
         println
         //Print the Menu
-            println("1  Punch or out")
+            println("1 Punch or Out")
             println("2 Punch By Date")
             println("3 Print Timsheet")
             println("4 Edit Paramaters")
@@ -31,7 +31,7 @@ object tsMain extends App{
             case "2"  => {
                 println("    1 Correct Current Timesheet")
                 println("    2 Enter a Date")
-                val j = readLine("Please Choose ")
+                val j = readLine("  Please Choose ")
                 j match {
                     case "1"  => println(s"TS3 + $passDate")//TS_3_Hours( passDate )
                     case "2"  => {
@@ -45,7 +45,7 @@ object tsMain extends App{
                 println("    1 Print Current Timesheet")
                 println("    2 Enter a Date")
                 println("    3 See all Timesheets")
-                val j = readLine("Please Choose ")
+                val j = readLine("  Please Choose ")
                 j match {
                     case "1"  => println("TS4")//TS_4_TSP( passDate )
                     case "2"  => {
@@ -57,15 +57,16 @@ object tsMain extends App{
                 }
             }  
             case "4"  => {
-                println("1 Timesheet Cutoff")
-                println("2 TimeSheet Range")
-                println("3 Peroid of Lunch time")
+                println("    1 Timesheet Cutoff")
+                println("    2 TimeSheet Range")
+                println("    3 Peroid of Lunch time")
                 val j = readLine("Please Choose ")
                 j match {
                     case "1"  => {
-                        println("Please choose a day of the Week")
-                        var k = readLine("Please Choose")
-                        if (1 to 7 contains k) { 
+                        var kofweek =  readLine("  Please choose a day of the Week ")
+                        var k  = kofweek.toInt
+                            //println("you entered "+kofweek+" which is a Data Type " + k.getClass)
+                        if (0 to 8 contains k) { 
                             println("TS5")//TS_5_Param(1, int k = dateTime.getDayOfWeek())
                         }else{
                             println("Choose wisely next time")
@@ -87,8 +88,9 @@ object tsMain extends App{
             case "5" => { 
                 println("Exit condition satisfied")
                 exLoop = false
+
             }
-            case _  => println("Select a diffrent option please")
+            case _  => println("\nSelect a diffrent option please\n")
         }
     } 
     while(exLoop);   
