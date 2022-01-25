@@ -1,6 +1,5 @@
 
 import java.time._
-
 object DT_Temp extends App {
     //Get current Date
     val cDate = LocalDate.now
@@ -12,6 +11,12 @@ object DT_Temp extends App {
     val cUTCTime = Instant.now
     // Get Date Time with Time Zone information
     val cDateTimeWithZone = ZonedDateTime.now  
+
+    var a = 0
+    for( a <- 1 to 7){ 
+        var tmpvar = DayOfWeek.of(a)
+        println( "Value of "+ a + " & " + tmpvar )
+    }
 
 // Split the Date into Year, Month and Day
     val cMonth = cDate.getMonthValue()
@@ -44,6 +49,9 @@ object DT_Temp extends App {
     // 2020 - 2021 = -1
     // 04 - 05 = -1
     // 01 - 13 = -12
+    println("=-=-=-=-=-=-=-=-=-=-")
+    val TSRange = List("Weekly", "BiWeekly", "BiMonthly","Monthly")
+    for ((elem, count) <- TSRange.zipWithIndex) {print(s"${count+1} -> $elem  ")}
 
 /*
 // Convert Date to BASIC_ISO_DATE

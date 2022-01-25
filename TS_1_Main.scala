@@ -31,7 +31,7 @@ object tsMain extends App{
             case "2"  => {
                 println("    1 Correct Current Timesheet")
                 println("    2 Enter a Date")
-                val j = readLine("  Please Choose ")
+                val j = readLine("  Please Choose: ")
                 j match {
                     case "1"  => println(s"TS3 + $passDate")//TS_3_Hours( passDate )
                     case "2"  => {
@@ -45,7 +45,7 @@ object tsMain extends App{
                 println("    1 Print Current Timesheet")
                 println("    2 Enter a Date")
                 println("    3 See all Timesheets")
-                val j = readLine("  Please Choose ")
+                val j = readLine("  Please Choose: ")
                 j match {
                     case "1"  => println("TS4")//TS_4_TSP( passDate )
                     case "2"  => {
@@ -60,23 +60,36 @@ object tsMain extends App{
                 println("    1 Timesheet Cutoff")
                 println("    2 TimeSheet Range")
                 println("    3 Peroid of Lunch time")
-                val j = readLine("Please Choose ")
+                val j = readLine("Please Choose: ")
                 j match {
                     case "1"  => {
-                        var kofweek =  readLine("  Please choose a day of the Week ")
+                        println
+                        var a = 0
+                        for( a <- 1 to 7){ 
+                            var tmpvar = DayOfWeek.of(a)
+                            print(s"$a -> $tmpvar  " )
+                        }
+                        println    
+                        var kofweek = readLine("  Please choose a day of the Week ")
                         var k  = kofweek.toInt
                             //println("you entered "+kofweek+" which is a Data Type " + k.getClass)
-                        if (0 to 8 contains k) { 
-                            println("TS5")//TS_5_Param(1, int k = dateTime.getDayOfWeek())
+                        if (0 to 8 contains k) {
+                            var tmpvar = DayOfWeek.of(k)
+                            println(s"   setting Day as $tmpvar in TS5")//TS_5_Param(1, int k = dateTime.getDayOfWeek())
                         }else{
                             println("Choose wisely next time")
                         } 
                     }
                     case "2"  =>{
-
-                    
-
-                        println("TS5")//TS_5_Param(2, passParam)
+                        val TSRange = List("Weekly", "BiWeekly", "BiMonthly","Monthly")
+                        for ((elem, count) <- TSRange.zipWithIndex) {print(s"${count+1} -> $elem  ")}
+                        var TSRngSel = readLine("  Please choose a pay period range ")
+                        var trs = TSRngSel.toInt
+                        if (0 to 5 contains trs) {
+                            println(s"  Setting TS5 with ${TSRange(trs-1)}") //TS_5_Param(2, passParam)
+                        }else{
+                            println("  There may come a day where *that* works, but it is not today")
+                        } 
                     }
                     case "3"  => {
                         
