@@ -1,8 +1,9 @@
-/*  On First Run: 
-        Auto Call to set the Paramaters 
+/*  
     On Open: 
         Set a global Var from Date to Auto Seprate by TS_5_Param
         Print out the 3 Timesheet Paramaters
+    On First Run: 
+        Auto Call to set the Paramaters 
 */
 import scala.io.StdIn._
 import java.time._
@@ -14,7 +15,7 @@ object tsMain extends App{
     val passDate  = LocalDate.now
     println
     println(s"Today is $passDate")
-    do {
+    while {
         println
         println
         //Print the Menu
@@ -116,10 +117,18 @@ object tsMain extends App{
             case _  => println("\nSelect a diffrent option please\n")
         }
     } 
-    while(exLoop);   
+    do(exLoop);   
     println()
-    println("Program terminated") 
-}
+    println("Program terminated")
+    println()
+    println()
+} //EOF
+
+
+
+
+
+
 /* Prompt avadable Commands - exe loop */  
     /*1 Punch  - TS_2_Punch */ 
         //1 Enter Punch (Auto Now)

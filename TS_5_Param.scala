@@ -1,5 +1,11 @@
 class TS_5_Param {
 
+
+    def user_ID
+
+}
+
+
 /* 
     Output warning: Changing these values will change All reporting of past records
 
@@ -22,10 +28,8 @@ class TS_5_Param {
         Capture Value and write to DB
 
     4 Employee ID
-        Capure a Value to use as the PK.
+        Moved to Main for Data persistance and control
 
     5 *Not Implamented, but should go here * Standard workday hours
         //Current *unchangeable* defalt is 8    
  */
-
-}
