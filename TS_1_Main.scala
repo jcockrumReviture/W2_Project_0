@@ -4,60 +4,63 @@
         Set a global Var from Date to Auto Seprate by TS_5_Param
         Print out the 3 Timesheet Paramaters
 */
-
 import scala.io.StdIn.readLine
 import java.time._
 import java.sql.{Connection, DriverManager}
 import java.awt.print.Printable
 
-object tsMain {
-
-        var passDate  = LocalDate.now
+object tsMain extends App{
+    var exLoop  : Boolean = true;
+    val passDate  = LocalDate.now
+    println
+    println(s"Today is $passDate")
+    do {
+        println
+        println
         //Print the Menu
             println("1  Punch or out")
             println("2 Punch By Date")
             println("3 Print Timsheet")
             println("4 Edit Paramaters")
             println("5 Exit ")
-            var  i = readLine("Please Choose")
+            val  i = readLine("Please Choose: ")
         //proc the i
 
         i match {
-            case "1"  => println("TS2")//TS_2_Punch( passDate )
-            case "2"  => println("TS3")//TS_3_Hours( passDate )
-            case "3"  => {
-                println("1 Correct Current Timesheet")
-                println("2 Enter a Date")
-                val j = readLine("Please Choose")
+            case "1"  => println(s"TS2+ $passDate")//TS_2_Punch( passDate )
+            case "2"  => {
+                println("    1 Correct Current Timesheet")
+                println("    2 Enter a Date")
+                val j = readLine("Please Choose ")
                 j match {
-                    case "1"  => println("TS3")//TS_3_Hours( passDate )
+                    case "1"  => println(s"TS3 + $passDate")//TS_3_Hours( passDate )
                     case "2"  => {
-                    val newDate = readLine("Enter Another Date if needed: yyyy/mm/dd")
-                    val passDate =LocalDate.parse(newDate)
-                    println("TS3")//TS_3_Hours( passDate )
+                    val newDate = readLine("Enter Date Please yyyy/mm/dd: ")
+                    //TODO val passDate = LocalDate.parse(newDate)
+                    println(s"TS3 + $newDate")//TS_3_Hours( passDate )
                     }
                 }
             }   
-            case "4"  => {
-                println("1 Print Current Timesheet")
-                println("2 Enter a Date")
-                println("3 See all Timesheets")
-                val j = readLine("Please Choose")
+            case "3"  => {
+                println("    1 Print Current Timesheet")
+                println("    2 Enter a Date")
+                println("    3 See all Timesheets")
+                val j = readLine("Please Choose ")
                 j match {
                     case "1"  => println("TS4")//TS_4_TSP( passDate )
                     case "2"  => {
-                    val newDate = readLine("Enter Another Date if needed: yyyy/mm/dd")
-                    val passDate =LocalDate.parse(newDate)
-                    println("TS4")//TS_4_TSP( passDate )
+                    val newDate = readLine("Enter Date Please yyyy/mm/dd: ")
+                    // TODO val passDate =LocalDate.parse(newDate)
+                    println(s"TS4 + $newDate")//TS_4_TSP( passDate )
                     }
                     case "3"  => println("TS4")//TS_4_TSP()
                 }
             }  
-            case "5"  => {
+            case "4"  => {
                 println("1 Timesheet Cutoff")
                 println("2 TimeSheet Range")
                 println("3 Peroid of Lunch time")
-                val j = readLine("Please Choose")
+                val j = readLine("Please Choose ")
                 j match {
                     case "1"  => {
                         println("Please choose a day of the Week")
@@ -81,8 +84,16 @@ object tsMain {
                     }
                 }
             }  
+            case "5" => { 
+                println("Exit condition satisfied")
+                exLoop = false
+            }
             case _  => println("Select a diffrent option please")
-        }    
+        }
+    } 
+    while(exLoop);   
+    println()
+    println("Program terminated") 
 }
 /* Prompt avadable Commands - exe loop */  
     /*1 Punch  - TS_2_Punch */ 

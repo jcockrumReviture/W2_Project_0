@@ -1,7 +1,7 @@
 
 import java.time._
 
-object DT_Temp {
+object DT_Temp extends App {
     //Get current Date
     val cDate = LocalDate.now
     // Get Current Time
@@ -23,13 +23,16 @@ object DT_Temp {
     val cMin = cTime.getMinute()
     val cSec = cTime.getSecond()
 
-// Convert String to Date
+    println("Convert String to Date")
     val strDate = "2021-05-13"
+    println(s"from $strDate")
+     println("Data Type" + strDate.getClass)
+     println
     val dt = LocalDate.parse(strDate)
-    // Get data type
-    strDate.getClass
-    // Get data type
-    dt.getClass
+    println(s"to $dt")
+     println("Data Type" + dt.getClass)
+
+
     
 // compare with Period.between :: Y to Y or D to D
     val dt1 = LocalDate.parse("2021-05-13")
