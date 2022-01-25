@@ -13,16 +13,8 @@ import java.awt.print.Printable
 Object TS(
 
   def main(args: Array[String]): Unit = {
+ 
 
-    AuthTheUsr()
-
-
-  def AuthTheUsr() :  
-    val uName = readLine("Please enter your username: ")
-    val EmpID = readLine("Please enter your password ")
-
-
-)
     DEF theMenuSys(){
         var passDate  = LocalDate.now
         //Print the Menu
@@ -76,10 +68,6 @@ Object TS(
                         then TS_5_Param(1, int k = dateTime.getDayOfWeek())
                         Else println("Choose wisely next time")    
                     }
-                         
-
-                        
-                    }
                     case 2  =>{
 
 
@@ -97,7 +85,7 @@ Object TS(
         } 
     }
 
-
+)
 /* Prompt avadable Commands - exe loop */  
     /*1 Punch  - TS_2_Punch */ 
         //1 Enter Punch (Auto Now)
