@@ -42,13 +42,13 @@ object DT_Temp {
     // 04 - 05 = -1
     // 01 - 13 = -12
 
-
+/*
 // Convert Date to BASIC_ISO_DATE
     val f = DateTimeFormatter.BASIC_ISO_DATE
     f.format(LocalDate.now) // 20210513
-    val f = DateTimeFormatter.ofPattern("MM/dd/yyyy")
-    f.format(LocalDate.now)
-    val f = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-    f.format(LocalDate.now)
-
+    val g = DateTimeFormatter.ofPattern("MM/dd/yyyy")
+    g.format(LocalDate.now)
+    val h = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    h.format(LocalDate.now)
+*/
 }

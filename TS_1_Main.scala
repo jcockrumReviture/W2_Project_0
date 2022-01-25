@@ -10,12 +10,8 @@ import java.time._
 import java.sql.{Connection, DriverManager}
 import java.awt.print.Printable
 
-Object TS(
+object tsMain {
 
-  def main(args: Array[String]): Unit = {
- 
-
-    DEF theMenuSys(){
         var passDate  = LocalDate.now
         //Print the Menu
             println("1  Punch or out")
@@ -23,69 +19,71 @@ Object TS(
             println("3 Print Timsheet")
             println("4 Edit Paramaters")
             println("5 Exit ")
-            val i = readLine("Please Choose")
+            var  i = readLine("Please Choose")
+        //proc the i
+
         i match {
-            case 1  => TS_2_Punch( passDate )
-            case 2  => TS_3_Hours( passDate )
-            case 3  => {
+            case "1"  => println("TS2")//TS_2_Punch( passDate )
+            case "2"  => println("TS3")//TS_3_Hours( passDate )
+            case "3"  => {
                 println("1 Correct Current Timesheet")
                 println("2 Enter a Date")
                 val j = readLine("Please Choose")
                 j match {
-                    case 1  => TS_3_Hours( passDate )
-                    case 2  => {
+                    case "1"  => println("TS3")//TS_3_Hours( passDate )
+                    case "2"  => {
                     val newDate = readLine("Enter Another Date if needed: yyyy/mm/dd")
                     val passDate =LocalDate.parse(newDate)
-                    TS_3_Hours( passDate )
+                    println("TS3")//TS_3_Hours( passDate )
                     }
                 }
             }   
-            case 4  => {
+            case "4"  => {
                 println("1 Print Current Timesheet")
                 println("2 Enter a Date")
                 println("3 See all Timesheets")
                 val j = readLine("Please Choose")
                 j match {
-                    case 1  => TS_4_TSP( passDate )
-                    case 2  => {
+                    case "1"  => println("TS4")//TS_4_TSP( passDate )
+                    case "2"  => {
                     val newDate = readLine("Enter Another Date if needed: yyyy/mm/dd")
                     val passDate =LocalDate.parse(newDate)
-                    TS_4_TSP( passDate )
+                    println("TS4")//TS_4_TSP( passDate )
                     }
-                    Case 3  => TS_4_TSP()
+                    case "3"  => println("TS4")//TS_4_TSP()
                 }
             }  
-            case 5  => {
+            case "5"  => {
                 println("1 Timesheet Cutoff")
                 println("2 TimeSheet Range")
                 println("3 Peroid of Lunch time")
                 val j = readLine("Please Choose")
                 j match {
-                    case 1  => {
+                    case "1"  => {
                         println("Please choose a day of the Week")
-                        int k = readLine("Please Choose")
-                        if 1 to 7 contains k
-                        then TS_5_Param(1, int k = dateTime.getDayOfWeek())
-                        Else println("Choose wisely next time")    
+                        var k = readLine("Please Choose")
+                        if (1 to 7 contains k) { 
+                            println("TS5")//TS_5_Param(1, int k = dateTime.getDayOfWeek())
+                        }else{
+                            println("Choose wisely next time")
+                        } 
                     }
-                    case 2  =>{
+                    case "2"  =>{
 
+                    
 
-
-                        TS_5_Param(2, passParam)
+                        println("TS5")//TS_5_Param(2, passParam)
                     }
-                    Case 3  => {
+                    case "3"  => {
                         
 
-                        TS_5_Param(3, passParam)
+                        println("TS5")//TS_5_Param(3, passParam)
                     }
                 }
             }  
             case _  => println("Select a diffrent option please")
-        } 
-    }
-
-)
+        }    
+}
 /* Prompt avadable Commands - exe loop */  
     /*1 Punch  - TS_2_Punch */ 
         //1 Enter Punch (Auto Now)
