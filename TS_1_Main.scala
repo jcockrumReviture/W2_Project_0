@@ -4,10 +4,10 @@
         Set a global Var from Date to Auto Seprate by TS_5_Param
         Print out the 3 Timesheet Paramaters
 */
-import scala.io.StdIn.readLine
+import scala.io.StdIn._
 import java.time._
 import java.sql.{Connection, DriverManager}
-import java.awt.print.Printable
+//import java.awt.print.Printable
 
 object tsMain extends App{
     var exLoop  : Boolean = true;
@@ -72,7 +72,8 @@ object tsMain extends App{
                         println    
                         var kofweek = readLine("  Please choose a day of the Week ")
                         var k  = kofweek.toInt
-                            //println("you entered "+kofweek+" which is a Data Type " + k.getClass)
+                        //TODO: Catch line for Non int
+                        //Inline test: println("you entered "+kofweek+" which is a Data Type " + k.getClass)
                         if (0 to 8 contains k) {
                             var tmpvar = DayOfWeek.of(k)
                             println(s"   setting Day as $tmpvar in TS5")//TS_5_Param(1, int k = dateTime.getDayOfWeek())
@@ -83,25 +84,34 @@ object tsMain extends App{
                     case "2"  =>{
                         val TSRange = List("Weekly", "BiWeekly", "BiMonthly","Monthly")
                         for ((elem, count) <- TSRange.zipWithIndex) {print(s"${count+1} -> $elem  ")}
+                        println
                         var TSRngSel = readLine("  Please choose a pay period range ")
+                        //TODO: Catch line for Non int
                         var trs = TSRngSel.toInt
                         if (0 to 5 contains trs) {
-                            println(s"  Setting TS5 with ${TSRange(trs-1)}") //TS_5_Param(2, passParam)
+                            println(s"  Setting TS5 range with ${TSRange(trs-1)}") //TS_5_Param(2, passParam)
                         }else{
                             println("  There may come a day where *that* works, but it is not today")
                         } 
                     }
                     case "3"  => {
-                        
-
-                        println("TS5")//TS_5_Param(3, passParam)
+                        val TSLRange = List(".5", "1", "1.5","2")
+                        for ((elem, count) <- TSLRange.zipWithIndex) {print(s"${count+1} -> $elem  ")}
+                        println
+                        var TSLRngSel = readLine("  Please choose a Lunch Period ")
+                        //TODO: Catch line for Non int
+                        var tlrs = TSLRngSel.toInt
+                        if (0 to 5 contains tlrs) {
+                            println(s"  Setting TS5 Lunch with ${TSLRange(tlrs-1)}") //TS_5_Param(2, passParam)
+                        }else{
+                            println("  Thats what you want...Really?")
+                        }
                     }
                 }
             }  
             case "5" => { 
                 println("Exit condition satisfied")
                 exLoop = false
-
             }
             case _  => println("\nSelect a diffrent option please\n")
         }
