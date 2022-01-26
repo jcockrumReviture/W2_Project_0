@@ -10,12 +10,16 @@ import java.time._
 import java.sql.{Connection, DriverManager}
 //import java.awt.print.Printable
 
+
+
+
+
 object tsMain extends App{
     var exLoop  : Boolean = true;
     val passDate  = LocalDate.now
     println
     println(s"Today is $passDate")
-    while {
+    do {
         println
         println
         //Print the Menu
@@ -117,12 +121,12 @@ object tsMain extends App{
             case _  => println("\nSelect a diffrent option please\n")
         }
     } 
-    do(exLoop);   
+    while(exLoop);   
     println()
     println("Program terminated")
     println()
     println()
-} //EOF
+} //fin
 
 
 
