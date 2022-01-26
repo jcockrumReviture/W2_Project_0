@@ -7,12 +7,7 @@
 */
 import scala.io.StdIn._
 import java.time._
-import java.sql.{Connection, DriverManager}
 //import java.awt.print.Printable
-
-
-
-
 
 object tsMain extends App{
     var exLoop  : Boolean = true;
@@ -127,6 +122,19 @@ object tsMain extends App{
     println()
     println()
 } //fin
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
