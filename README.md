@@ -7,7 +7,7 @@ When working from home or on a consulting job it is often difficult to generate 
 ###### Timesheet Parameters
 - **Warning: at this time, changes to these parameters will alter _ALL_ reporting**.
 - This is where you enter or change the **default** values of the Timesheet reporting.
-- Also in this section will be the _employeeID_, which will serve as half of the PK
+- Also in this section will be the _employeeID_, which will serve as PK
 
 ## This program will accept 2 different input types:
 ###### a "live" punch
