@@ -9,7 +9,44 @@ import java.sql.{Connection, DriverManager}
 import scala.io.StdIn._
 import java.time._
 
-object tsMain extends App{
+object TS_Start extends App {
+  def main(args:Array[String]):Unit={  
+    println
+    println
+    println("welcome to Timesheet in Scala")
+    //TODO: test and scub input
+    val un1 = readLine("Enter your UserID: ")
+  if (auth_usr(un1) = true){
+    tsMainLoop(un1)
+  }else{
+    println("Please Contact a Admistrator to be added to the system") 
+  }
+    println
+    println  
+  //Exit
+    def auth_usr (un1: String):Boolean = {
+        val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        val dbun = "john"
+        val dbpw ="1q2w3e4r5t"
+        //TODO Git rid of the Hardcode
+        val conn = DriverManager.getConnection(dbc, dbun, dbpw)
+        val statement = connection.createStatement
+        val rs = statement.executeQuery("SELECT EmpID FROM TSUser")
+        while (rs.next() ) {
+            val checkUnkn1 = rs.getString("EmpID")
+            If( checkUnkn1 !=NULL)
+            {
+                return true       
+            }else{
+                return false
+            }
+        }
+        connection.close
+    }   
+
+}
+
+object tsMainLoop(usr_id: int) extends App{
     var exLoop  : Boolean = true;
     val passDate  = LocalDate.now
     println
@@ -124,22 +161,12 @@ object tsMain extends App{
 
     def dbConnTest (): Connection = {
         val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
-        val userName = "john"
-        val password ="1q2w3e4r5t"
-        val driver = "com.mysql.cj.jdbc.Driver"
-        Class.forName(driver)
-        val con = DriverManager.getConnection(dbc, userName, password)
-        try {
-            Class.forName(driver)
-            if(con != null)
-            System.out.println("Database connection is successful!")
-            } catch {
-            case e: Exception =>
-            e.printStackTrace()
-        }
-        return con
+        val dbun = "john"
+        val dbpw ="1q2w3e4r5t"
+        //todo Git rid of the Hardcode
+        val conn = DriverManager.getConnection(dbc, dbun, dbpw)
+        if(conn != null){ println("Database connection is successful!")}
     }
-
 
 
 
