@@ -1,17 +1,27 @@
 import java.sql.{Connection, DriverManager}
+import java.awt.print.Printable
 object TS_2A_InPunch extends App {
 
-    println("testing")
+    dbConnTest()
 
-
-
-
-
-
-
+    def dbConnTest (): Connection = {
+        val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        val userName = "john"
+        val password ="1q2w3e4r5t"
+        val driver = "com.mysql.cj.jdbc.Driver"
+        Class.forName(driver)
+        val con = DriverManager.getConnection(dbc, userName, password)
+        try {
+            Class.forName(driver)
+            if(con != null)
+            System.out.println("Database connection is successful!")
+            } catch {
+            case e: Exception =>
+            e.printStackTrace()
+        }
+        return con
+    }
 }
-
-
 
 // Future Data entry is blocked because there is no access by the use to enter a time
 

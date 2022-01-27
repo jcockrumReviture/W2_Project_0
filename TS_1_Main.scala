@@ -5,9 +5,9 @@
     On First Run: 
         Auto Call to set the Paramaters 
 */
+import java.sql.{Connection, DriverManager}
 import scala.io.StdIn._
 import java.time._
-//import java.awt.print.Printable
 
 object tsMain extends App{
     var exLoop  : Boolean = true;
@@ -121,6 +121,32 @@ object tsMain extends App{
     println("Program terminated")
     println()
     println()
+
+    def dbConnTest (): Connection = {
+        val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        val userName = "john"
+        val password ="1q2w3e4r5t"
+        val driver = "com.mysql.cj.jdbc.Driver"
+        Class.forName(driver)
+        val con = DriverManager.getConnection(dbc, userName, password)
+        try {
+            Class.forName(driver)
+            if(con != null)
+            System.out.println("Database connection is successful!")
+            } catch {
+            case e: Exception =>
+            e.printStackTrace()
+        }
+        return con
+    }
+
+
+
+
+
+
+
+
 } //fin
 
 

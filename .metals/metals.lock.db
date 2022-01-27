@@ -1,0 +1,6 @@
+#FileLock
+#Wed Jan 26 19:24:05 PST 2022
+hostName=localhost
+id=17e998fcf23bbf4e26a8204ef581890a0cf422f0f4b
+method=file
+server=localhost\:1060

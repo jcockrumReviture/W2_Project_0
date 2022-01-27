@@ -1,0 +1,43 @@
+{
+    "database.connections": {
+        "1642690231803": {
+            "key": "1642690231803",
+            "host": "127.0.0.1",
+            "port": "3306",
+            "user": "root",
+            "password": "1q2w3e4r",
+            "timezone": "+00:00",
+            "useSSL": false,
+            "isCluster": false,
+            "clientCertPath": null,
+            "clientKeyPath": null,
+            "ssh": {
+                "host": "",
+                "privateKeyPath": "C:\\Users\\johnc\\.ssh\\id_rsa",
+                "port": 22,
+                "username": "root",
+                "type": "password",
+                "connectTimeout": 10000,
+                "algorithms": {
+                    "cipher": []
+                },
+                "tunnelPort": null
+            },
+            "usingSSH": false,
+            "esAuth": "none",
+            "encoding": "utf8",
+            "showHidden": false,
+            "connectionKey": "database.connections",
+            "global": false,
+            "dbType": "MySQL",
+            "connectionUrl": "",
+            "encrypt": true,
+            "dbPath": "",
+            "authType": "default",
+            "includeDatabases": "w2_project_0",
+            "database": null,
+            "name": "FirstLocal",
+            "tooltip": "Host: 127.0.0.1, Port: 3306"
+        }
+    }
+}
