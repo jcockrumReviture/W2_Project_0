@@ -1,6 +1,17 @@
     import java.sql.{Connection, DriverManager}
 object TS_2A_InPunch extends App {
 
+    dbConnTest()
+
+    def dbConnTest (): Connection = {
+        val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        val dbun = "john"
+        val dbpw ="1q2w3e4r5t"
+        //todo Git rid of the Hardcode
+        val conn = DriverManager.getConnection(dbc, dbun, dbpw)
+        if(conn != null){ println("Database connection is successful!")}
+    }
+
     def MakePunch (datetimeNow: String,empid: Int) = {
         val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
         val dbun = "john"
