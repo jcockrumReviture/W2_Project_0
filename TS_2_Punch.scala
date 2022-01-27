@@ -8,7 +8,7 @@ object TS_2A_InPunch extends App {
         //TODO gotta git rid of the Hardcode
         val conn = DriverManager.getConnection(dbc, dbun, dbpw)
         val statement = connection.createStatement
-        val rs = statement.executeQuery("SELECT TSEntryDate,COUNT(TSEntryDate),fk_EmpID FROM tspunches WHERE = TSEntryDate = today AND fk_EmpID = "+ empid)
+        val rs = statement.executeQuery("SELECT TSEntryDate,COUNT(TSEntryDate),fk_EmpID FROM tspunches WHERE = TSEntryDate = today AND fk_EmpID = "+ empid + ");")
         while (rs.next() ) { val checkUnkn1 = rs.getInt("COUNT(TSEntryDate)")} // TODO: This line is wrong
          checkUnkn1 match {
             case "0"  => {
