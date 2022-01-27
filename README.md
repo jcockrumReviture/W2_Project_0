@@ -4,7 +4,6 @@ When working from home or on a consulting job it is often difficult to generate 
 
 ## Data origization
 - There are 4 punches available: _In_, _Lunch Out_, _Lunch In_, _Out_
-- a group of 4 punches will be a row in the DB
 ###### Timesheet Parameters
 - **Warning: at this time, changes to these parameters will alter _ALL_ reporting**.
 - This is where you enter or change the **default** values of the Timesheet reporting.
