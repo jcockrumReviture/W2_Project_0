@@ -11,11 +11,6 @@ class TS_3_InHours {
         val rs = statement.executeQuery(formofSQL)
         println("You have Clocked in from Lunch")
 
-
-
-
-
-
 }    
 /*  Behavior
     

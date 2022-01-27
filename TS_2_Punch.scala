@@ -51,7 +51,6 @@ object TS_2A_InPunch extends App {
                 //TODO: Da Maths: You worked X Hours
             }
             case _  => println("You are done; You don't have to go home but you can't stay here")
-         }
         }
         connection.close
     } 
