@@ -5,7 +5,7 @@ When working from home or on a consulting job it is often difficult to generate 
 ## Data origization
 - There are 4 punches available: _In_, _Lunch Out_, _Lunch In_, _Out_
 ###### Timesheet Parameters
-- **Warning: at this time, changes to these parameters will alter _ALL_ reporting**.
+- **Warning: changes to these parameters will alter _ALL_ reporting Per User**.
 - This is where you enter or change the **default** values of the Timesheet reporting.
 - Also in this section will be the _employeeID_, which will serve as PK
 
