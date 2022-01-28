@@ -1,10 +1,11 @@
 class TS_5_Param {
 
 
-    def user_ID
 
 }
 object TS_Start extends App {
+
+    /*
     def main(args:Array[String]):Unit={  
         println
         println
@@ -37,6 +38,7 @@ object TS_Start extends App {
             connection.close
         }
     }   
+*/    
 
 }
 

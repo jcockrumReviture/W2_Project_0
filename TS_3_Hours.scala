@@ -1,5 +1,6 @@
 class TS_3_InHours {
 
+    /*
      def MakeHours (datetimeNow: String,empid: Int) = {
         val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
         val dbun = "john"
@@ -11,6 +12,7 @@ class TS_3_InHours {
         val rs = statement.executeQuery(formofSQL)
         println("You have Clocked in from Lunch")
      }
+  */   
 }    
 /*  Behavior
     

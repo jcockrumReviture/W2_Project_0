@@ -1,6 +1,6 @@
     import java.sql.{Connection, DriverManager}
 object TS_2A_InPunch extends App {
-
+    /*
     def MakePunch (datetimeNow: String,empid: Int) = {
         val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
         val dbun = "john"
@@ -43,6 +43,7 @@ object TS_2A_InPunch extends App {
         }
         connection.close
     } 
+    */
 //Fin
 } 
 
