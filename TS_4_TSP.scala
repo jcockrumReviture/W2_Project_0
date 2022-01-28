@@ -2,17 +2,22 @@ import java.sql.{Connection, DriverManager}
 
 class TS_4_TSP {
 
+    var pass_v = "Did not work"
+    dbConnTest
+
     def dbConnTest (): Connection = {
-        val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
-        val dbun = "john"
+        val dbc = "jdbc:mysql://localhost:3306/w2_project_0"
+        val dbun = "root"
         val dbpw ="1q2w3e4r5t"
         //todo Git rid of the Hardcode
         val conn = DriverManager.getConnection(dbc, dbun, dbpw)
         if(conn != null){ 
-            println("Database connection is successful!")
+            pass_v ="Database connection is successful!"
         }
         return conn
     }
+
+    println(pass_v)
 }
 
 /* 
