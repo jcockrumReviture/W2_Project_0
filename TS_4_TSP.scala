@@ -11,8 +11,8 @@ class TS_4_TSP {
         if(conn != null){ 
             println("Database connection is successful!")
         }
+        return conn
     }
-
 }
 
 /* 
