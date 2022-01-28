@@ -2,7 +2,7 @@
 //import java.sql._
 //import java.sql.{Connection, DriverManager,Statement, ResultSet}
 //import java.sql.{Connection, DriverManager,Statement}
-import java.sql.Driver;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
