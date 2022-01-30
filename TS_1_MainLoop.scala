@@ -3,7 +3,7 @@
 import java.sql.{Connection, DriverManager}
 import scala.io.StdIn._
 import java.time._
-object  tsMainLoop extends App{
+object  tsMainLoop {
     var exLoop  : Boolean = true;
     val passDate  = LocalDate.now
     println
