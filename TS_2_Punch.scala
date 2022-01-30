@@ -1,5 +1,5 @@
     import java.sql.{Connection, DriverManager}
-object TS_2A_InPunch extends App {
+object TS_2A_InPunch {
     /*
     def MakePunch (datetimeNow: String,empid: Int) = {
         val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"

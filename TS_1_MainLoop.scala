@@ -6,11 +6,11 @@ import java.time._
 object  tsMainLoop {
     var exLoop  : Boolean = true;
     val passDate  = LocalDate.now
-    println
+    println()
     println(s"Today is $passDate")
     do {
-        println
-        println
+        println()
+        println()
         //Print the Menu
             println("1 Punch or Out")
             println("2 Punch By Date")
@@ -57,13 +57,13 @@ object  tsMainLoop {
                 val j = readLine("Please Choose: ")
                 j match {
                     case "1"  => {
-                        println
+                        println()
                         var a = 0
                         for( a <- 1 to 7){ 
                             var tmpvar = DayOfWeek.of(a)
                             print(s"$a -> $tmpvar  " )
                         }
-                        println    
+                        println()  
                         var kofweek = readLine("  Please choose a day of the Week ")
                         var k  = kofweek.toInt
                         //TODO: Catch line for Non int
@@ -78,7 +78,7 @@ object  tsMainLoop {
                     case "2"  =>{
                         val TSRange = List("Weekly", "BiWeekly", "BiMonthly","Monthly")
                         for ((elem, count) <- TSRange.zipWithIndex) {print(s"${count+1} -> $elem  ")}
-                        println
+                        println()
                         var TSRngSel = readLine("  Please choose a pay period range ")
                         //TODO: Catch line for Non int
                         var trs = TSRngSel.toInt
@@ -91,7 +91,7 @@ object  tsMainLoop {
                     case "3"  => {
                         val TSLRange = List(".5", "1", "1.5","2")
                         for ((elem, count) <- TSLRange.zipWithIndex) {print(s"${count+1} -> $elem  ")}
-                        println
+                        println()
                         var TSLRngSel = readLine("  Please choose a Lunch Period ")
                         //TODO: Catch line for Non int
                         var tlrs = TSLRngSel.toInt

@@ -3,7 +3,7 @@
 import java.sql._
 import scala.util.Try
 
-object DBConnTst2 extends App {
+object DBConnTst2{
 
     val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
     // database credentials

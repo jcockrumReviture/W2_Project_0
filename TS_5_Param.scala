@@ -3,7 +3,7 @@ class TS_5_Param {
 
 
 }
-object TS_Start extends App {
+object TS_Start{
 
     /*
     def main(args:Array[String]):Unit={  
