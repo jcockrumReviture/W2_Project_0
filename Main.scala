@@ -1,12 +1,10 @@
-import java.sql._
-import java.time._
-import scala.util.Try
-import scala.io.StdIn._
-
 object Main extends App {
+  println()
+  println()
+  println()
+  println()
 
-
-
-  println("Testing")
+  var obj = new TS_5_Param();
+  obj.user_login;
   
 }

@@ -1,45 +1,55 @@
+import java.sql._
+import java.time._
+import scala.util.Try
+import scala.io.StdIn._
+
 class TS_5_Param {
+    // Class variables
+        var un1: Int = 0
+        var usrTst: Int = 0
 
-
-
-}
-object TS_Start{
-
-    /*
-    def main(args:Array[String]):Unit={  
-        println
-        println
+    def user_login = {
+        println()
+        println()
         println("welcome to Timesheet in Scala")
         //TODO: test and scub input
-        val un1 = readLine("Enter your UserID: ")
-        val usrTst = auth_usr(un1)
-        if ( usrTst == true ){
-                tsMainLoop(un1)
+        
+        un1 = readLine("Enter your UserID: ").toInt
+        auth_usr
+        
+        println(s"value of un1 is $un1 and usrTst is $usrTst")
+
+        if (un1 == usrTst){
+                println("tsMainLoop(un1)")
             }else{
                 println("Please Contact a Admistrator to be added to the system") 
             }
         //TODO: On First run: Call to set the Paramaters 
-        println
-        println  
+        println()
+        println()
         //Exit
+    }
 
-        def auth_usr (un1: String):Boolean = {
-            val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
-            val dbun = "john"
-            val dbpw ="1q2w3e4r5t"
-            //TODO Git rid of the Hardcode
-            val conn = DriverManager.getConnection(dbc, dbun, dbpw)
-            val statement = connection.createStatement
-            val rs = statement.executeQuery("SELECT EmpID FROM TSUser")
-            while (rs.next() ) {
-                val checkUnkn1 = rs.getString("EmpID")
-                If( checkUnkn1 !=NULL)  {return true} 
-            }
-            connection.close
-        }
-    }   
-*/    
+    def auth_usr = {
+        val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        // database credentials
+        val db_usr  = "root"
+        val db_pass = "1q2w3e4r"
+        //SQL and Connection
+        val sql =  s"SELECT $un1 FROM tsuser"
+        
+        Class.forName("com.mysql.cj.jdbc.Driver")
+        val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
+        val statement: Try[Statement] = connection.map(_.createStatement())
+        val resultSet: Try[ResultSet] = statement.map(_.executeQuery(sql))
 
+        resultSet.map(rs => while (rs.next()) usrTst=(rs.getInt(1)))  
+                .recover{case e => e.printStackTrace()}
+        // Cleanup
+        resultSet.foreach(_.close())
+        statement.foreach(_.close())
+        connection.foreach(_.close())
+    }
 }
 
 /* 
@@ -64,7 +74,7 @@ object TS_Start{
         Capture Value and write to DB
 
     4 Employee ID
-        Moved to Main for Data persistance and control
+        
 
     5 *Not Implamented, but should go here * Standard workday hours
         //Current *unchangeable* defalt is 8    
