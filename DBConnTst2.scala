@@ -1,7 +1,6 @@
-//import java.sql.{Connection, DriverManager,Statement}
-//import java.sql.ResultSet
-//import java.sql._
-
+//import java.sql.{Connection, DriverManager}
+//import java.sql.Statement
+import java.sql._
 import scala.util.Try
 
 object DBConnTst2 extends App {
@@ -12,7 +11,8 @@ object DBConnTst2 extends App {
     val db_pass = "1q2w3e4r"
     //SQL and Connection
     val sql =  "SELECT * FROM tsuser"
-
+    
+    Class.forName("com.mysql.jdbc.Driver")
     val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
     val statement: Try[Statement] = connection.map(_.createStatement())
     val resultSet: Try[ResultSet] = statement.map(_.executeQuery(sql))
