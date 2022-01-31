@@ -1,23 +1,43 @@
-import java.sql.{Connection, DriverManager}
+import java.sql._
 
 class TS_4_TSP {
 
-    var pass_v = "Did not work"
-    dbConnTest
 
-    def dbConnTest (): Connection = {
-        val dbc = "jdbc:mysql://localhost:3306/w2_project_0"
-        val dbun = "root"
-        val dbpw ="1q2w3e4r5t"
-        //todo Git rid of the Hardcode
-        val conn = DriverManager.getConnection(dbc, dbun, dbpw)
-        if(conn != null){ 
-            pass_v ="Database connection is successful!"
-        }
-        return conn
+
+
+
+
+
+
+
+
+
+/*
+
+    def getAllPunches = {
+        val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        // database credentials
+        val db_usr  = "root"
+        val db_pass = "1q2w3e4r"
+        //SQL and Connection
+        // SELECT PunchID, TSEntryDate, TSEntryTime FROM TSPunches WHERE TSEntryDate = '1/30/2022' AND fk_EmpID = 1111;
+        val sql =  s"SELECT PunchID, TSEntryDate, TSEntryTime FROM TSPunches WHERE TSEntryDate = '$theDate' AND fk_EmpID = $theUID ;"
+        //for testing:  println (s"get Count: $sql")
+        Class.forName("com.mysql.cj.jdbc.Driver")
+        val connection =  DriverManager.getConnection(db_addy, db_usr, db_pass)
+        val statement = connection.createStatement
+        val rs = statement.executeQuery(sql)
+         println("Punch ID    Date         Time")
+            while (rs.next) {
+                val pid = rs.getString("PunchID")
+                val pda = rs.getString("TSEntryDate")
+                val ptm = rs.getString("TSEntryTime")
+                println(s"$pid         $pda    $ptm")
+            }
+        // Cleanup
+        connection.close()
     }
-
-    println(pass_v)
+  */  
 }
 
 /* 
