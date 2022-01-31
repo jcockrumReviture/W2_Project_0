@@ -12,6 +12,10 @@ class TS_3_InHours(val theUID: Int, val theDate: String) {
 
 
 //Loopit
+    println()
+    println()
+    println("Welcome to Hours Entry")
+    println()
     while(changeLoop){
 // Show all the punches for the date
         getAllPunches
@@ -24,8 +28,13 @@ class TS_3_InHours(val theUID: Int, val theDate: String) {
             case 1  => {
                 mod_pid = readLine("Please Enter Punch ID: ").toInt
                 mod_ptm = readLine("Please Enter Punch time: ").toString
-                cngAPunch
-                println(s"You have changed punch $mod_pid ")
+                if (mod_pid != 0){
+                    cngAPunch
+                    println(s"You have changed punch $mod_pid ")
+                }else{
+                    println{"Change Canceled"}
+                }
+
             }
             case 2  => changeLoop = false
             case _  => println("I'm sorry, I don't understand what you want to do")
@@ -63,12 +72,13 @@ class TS_3_InHours(val theUID: Int, val theDate: String) {
         val db_pass = "1q2w3e4r"
         //SQL and Connection
         //// UPDATE TSPunches SET TSEntryTime = '08:00' WHERE PunchID = 363; 
-        String sql = s"UPDATE TSPunches SET TSEntryTime = '$mod_ptm' WHERE PunchID = $mod_pid ;"
+        val sql = s"UPDATE TSPunches SET TSEntryTime = '$mod_ptm' WHERE PunchID = $mod_pid ;"
         Class.forName("com.mysql.cj.jdbc.Driver")
-        Connection conn = DriverManager.getConnection(db_addy, db_usr, db_pass)
-        Statement stmt = conn.createStatement()
+        val conn =  DriverManager.getConnection(db_addy, db_usr, db_pass)
+        val stmt = conn.createStatement()
         stmt.executeUpdate(sql)
         System.out.println("Database updated successfully ")
+        conn.close()
     }
 } //Fin
 /*  Behavior
