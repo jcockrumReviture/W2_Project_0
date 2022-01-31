@@ -41,7 +41,7 @@ class  tsMainLoop(val theUID: Int) {
                 j match {
                     case "1"  => println(s"TS3 + $passDate")//TS_3_Hours( passDate )
                     case "2"  => {
-                    val newDate = readLine("Enter Date Please yyyy/mm/dd: ")
+                    val newDate = readLine("Enter Date as 'm/d/yyyy' Please: ")
                     //TODO val passDate = LocalDate.parse(newDate)
                     println(s"TS3 + $newDate")//TS_3_Hours( passDate )
                     }
