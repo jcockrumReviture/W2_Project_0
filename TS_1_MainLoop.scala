@@ -1,16 +1,28 @@
 
-// TODO Resolve "java.sql.SQLException: No suitable driver found for jdbc:mysql"
-import java.sql.{Connection, DriverManager}
-import scala.io.StdIn._
+import java.sql._
 import java.time._
-object  tsMainLoop extends App{
-    var exLoop  : Boolean = true;
-    val passDate  = LocalDate.now
-    println
+import scala.util.Try
+import scala.io.StdIn._
+
+class  tsMainLoop(val theUID: Int) {
+    //Class Var
+    val cDate =LocalDate.now
+    val cYear = cDate.getYear()
+    val cMonth = cDate.getMonthValue()
+    val cDay = cDate.getDayOfMonth()
+    var exLoop   : Boolean = true
+    var passDate : String  = ""
+    var niceName : String  = ""
+
+    passDate  = (cMonth).toString + "/" + (cDay).toString + "/" + (cYear).toString
+    getNiceName    
+
+    println()
+    println(s"Welcom $niceName")
     println(s"Today is $passDate")
     do {
-        println
-        println
+        println()
+        println()
         //Print the Menu
             println("1 Punch or Out")
             println("2 Punch By Date")
@@ -21,17 +33,16 @@ object  tsMainLoop extends App{
         //proc the i
 
         i match {
-            case "1"  => println(s"TS2+ $passDate")//TS_2_Punch( passDate )
+            case "1"  => new TS_2_InPunch(theUID,passDate)
             case "2"  => {
                 println("    1 Correct Current Timesheet")
                 println("    2 Enter a Date")
                 val j = readLine("  Please Choose: ")
                 j match {
-                    case "1"  => println(s"TS3 + $passDate")//TS_3_Hours( passDate )
+                    case "1"  => new TS_3_InHours(theUID,passDate)
                     case "2"  => {
-                    val newDate = readLine("Enter Date Please yyyy/mm/dd: ")
-                    //TODO val passDate = LocalDate.parse(newDate)
-                    println(s"TS3 + $newDate")//TS_3_Hours( passDate )
+                        var newDate = readLine("Enter Date as 'm/d/yyyy' Please: ").toString
+                        new TS_3_InHours(theUID,newDate)
                     }
                 }
             }   
@@ -57,13 +68,13 @@ object  tsMainLoop extends App{
                 val j = readLine("Please Choose: ")
                 j match {
                     case "1"  => {
-                        println
+                        println()
                         var a = 0
                         for( a <- 1 to 7){ 
                             var tmpvar = DayOfWeek.of(a)
                             print(s"$a -> $tmpvar  " )
                         }
-                        println    
+                        println()  
                         var kofweek = readLine("  Please choose a day of the Week ")
                         var k  = kofweek.toInt
                         //TODO: Catch line for Non int
@@ -78,7 +89,7 @@ object  tsMainLoop extends App{
                     case "2"  =>{
                         val TSRange = List("Weekly", "BiWeekly", "BiMonthly","Monthly")
                         for ((elem, count) <- TSRange.zipWithIndex) {print(s"${count+1} -> $elem  ")}
-                        println
+                        println()
                         var TSRngSel = readLine("  Please choose a pay period range ")
                         //TODO: Catch line for Non int
                         var trs = TSRngSel.toInt
@@ -91,7 +102,7 @@ object  tsMainLoop extends App{
                     case "3"  => {
                         val TSLRange = List(".5", "1", "1.5","2")
                         for ((elem, count) <- TSLRange.zipWithIndex) {print(s"${count+1} -> $elem  ")}
-                        println
+                        println()
                         var TSLRngSel = readLine("  Please choose a Lunch Period ")
                         //TODO: Catch line for Non int
                         var tlrs = TSLRngSel.toInt
@@ -110,11 +121,27 @@ object  tsMainLoop extends App{
             case _  => println("\nSelect a diffrent option please\n")
         }
     } 
-    while(exLoop);   
-    println()
-    println("Program terminated")
-    println()
-    println()
+    while(exLoop);
+// End MainLoop
+
+    def getNiceName = {
+        val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        // database credentials
+        val db_usr  = "root"
+        val db_pass = "1q2w3e4r"
+        //SQL and Connection
+        val sql =  s"SELECT CONCAT(LastName,' ',FirstName) AS nicename FROM tsuser WHERE EmpID = $theUID"
+        Class.forName("com.mysql.cj.jdbc.Driver")
+        val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
+        val statement: Try[Statement] = connection.map(_.createStatement())
+        val resultSet: Try[ResultSet] = statement.map(_.executeQuery(sql))
+        resultSet.map(rs => while (rs.next()) niceName=(rs.getString(1)))  
+                .recover{case e => e.printStackTrace()}
+        // Cleanup
+        resultSet.foreach(_.close())
+        statement.foreach(_.close())
+        connection.foreach(_.close())
+    }
 
 
 

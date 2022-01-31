@@ -1,45 +1,13 @@
+import java.sql._
+import java.time._
+import scala.util.Try
+import scala.io.StdIn._
+
 class TS_5_Param {
+    // Class variables
 
 
-
-}
-object TS_Start extends App {
-
-    /*
-    def main(args:Array[String]):Unit={  
-        println
-        println
-        println("welcome to Timesheet in Scala")
-        //TODO: test and scub input
-        val un1 = readLine("Enter your UserID: ")
-        val usrTst = auth_usr(un1)
-        if ( usrTst == true ){
-                tsMainLoop(un1)
-            }else{
-                println("Please Contact a Admistrator to be added to the system") 
-            }
-        //TODO: On First run: Call to set the Paramaters 
-        println
-        println  
-        //Exit
-
-        def auth_usr (un1: String):Boolean = {
-            val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
-            val dbun = "john"
-            val dbpw ="1q2w3e4r5t"
-            //TODO Git rid of the Hardcode
-            val conn = DriverManager.getConnection(dbc, dbun, dbpw)
-            val statement = connection.createStatement
-            val rs = statement.executeQuery("SELECT EmpID FROM TSUser")
-            while (rs.next() ) {
-                val checkUnkn1 = rs.getString("EmpID")
-                If( checkUnkn1 !=NULL)  {return true} 
-            }
-            connection.close
-        }
-    }   
-*/    
-
+    
 }
 
 /* 
@@ -64,7 +32,7 @@ object TS_Start extends App {
         Capture Value and write to DB
 
     4 Employee ID
-        Moved to Main for Data persistance and control
+        
 
     5 *Not Implamented, but should go here * Standard workday hours
         //Current *unchangeable* defalt is 8    

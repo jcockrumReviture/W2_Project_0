@@ -1,6 +1,6 @@
 
 import java.time._
-object DT_Temp extends App {
+object DT_Ref {
     //Get current Date
     val cDate = LocalDate.now
     // Get Current Time
@@ -32,7 +32,7 @@ object DT_Temp extends App {
     val strDate = "2021-05-13"
     println(s"from $strDate")
      println("Data Type" + strDate.getClass)
-     println
+     println()
     val dt = LocalDate.parse(strDate)
     println(s"to $dt")
      println("Data Type" + dt.getClass)

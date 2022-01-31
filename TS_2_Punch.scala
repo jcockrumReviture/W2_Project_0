@@ -1,49 +1,86 @@
-    import java.sql.{Connection, DriverManager}
-object TS_2A_InPunch extends App {
-    /*
-    def MakePunch (datetimeNow: String,empid: Int) = {
-        val dbc = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
-        val dbun = "john"
-        val dbpw ="1q2w3e4r5t"
-        //TODO gotta git rid of the Hardcode
-        val conn = DriverManager.getConnection(dbc, dbun, dbpw)
-        val statement = connection.createStatement
-        val rs = statement.executeQuery("SELECT TSEntryDate,COUNT(TSEntryDate),fk_EmpID FROM tspunches WHERE = TSEntryDate = today AND fk_EmpID = "+ empid + ");")
-        while (rs.next() ) { val checkUnkn1 = rs.getInt("COUNT(TSEntryDate)")} // TODO: This line is wrong
-         checkUnkn1 match {
-            case "0"  => {
-                val formofSQL = "INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID) VALUES (" + LocalDate.now + "," + LocalTime.now + "," + empid + ");"
-                val statement = connection.createStatement
-                val rs = statement.executeQuery(formofSQL)
-                println("You have Clocked in ")
-                //TODO: Da Maths Lunch is at xx:xx time
-            }
-            case "1"  => {
-                val formofSQL = "INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID) VALUES (" + LocalDate.now + "," + LocalTime.now + "," + empid + ");"
-                val statement = connection.createStatement
-                val rs = statement.executeQuery(formofSQL)
-                println("You have Clocked out for Lunch ")
-                //TODO: Da Maths Lunch is over at xx:xx time
-            }
-            case "2"  => {
-                val formofSQL = "INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID) VALUES (" + LocalDate.now + "," + LocalTime.now + "," + empid + ");"
-                val statement = connection.createStatement
-                val rs = statement.executeQuery(formofSQL)
-                println("You have Clocked in from Lunch")
-                //TODO: Da Maths You have xx:XX remaining time today
-            }
-            case "3"  => {
-                val formofSQL = "INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID) VALUES (" + LocalDate.now + "," + LocalTime.now + "," + empid + ");"
-                val statement = connection.createStatement
-                val rs = statement.executeQuery(formofSQL)
-                println("You have Clocked out for the Day ")
-                //TODO: Da Maths: You worked X Hours
-            }
-            case _  => println("You are done; You don't have to go home but you can't stay here")
+import java.sql._
+import java.time._
+import scala.util.Try
+
+class TS_2_InPunch(val theUID: Int, val theDate: String) {
+    var theTime: String = ""
+    var thePunchCnt: Int = 0
+    var formOfSQL: String = ""
+    val cTime=LocalTime.now
+    val cHour = cTime.getHour()
+    val cMin = cTime.getMinute()
+
+    theTime = (cHour).toString + ":" + (cMin).toString
+
+//get Punch Count
+    getPunchCount
+//Select and insert Punch
+    //for testing: println(s"the Punchcnt is $thePunchCnt")
+    thePunchCnt match {
+        case 0  => {
+            addPunchbyCount
+            println("You have Clocked in ")
         }
-        connection.close
+        case 1  => {
+            addPunchbyCount
+            println("You have Clocked out for Lunch ")
+        }
+        case 2  => {
+            addPunchbyCount
+            println("You have Clocked in from Lunch")
+        //TODO: Da Maths You have xx:XX remaining time today
+        }
+        case 3  => {
+            addPunchbyCount
+            println("You have Clocked out for the Day ")
+        //TODO: Da Maths: You worked X Hours
+        }
+        case _  => println("You are done; You don't have to go home but you can't stay here")
     } 
-    */
+
+    def getPunchCount = {
+        val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        // database credentials
+        val db_usr  = "root"
+        val db_pass = "1q2w3e4r"
+        //SQL and Connection
+        val sql =  s"SELECT COUNT(TSEntryDate) FROM TSPunches WHERE TSEntryDate = '$theDate' AND fk_EmpID = $theUID ;"
+        //for testing:  println (s"get Count: $sql")
+        Class.forName("com.mysql.cj.jdbc.Driver")
+        val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
+        val statement: Try[Statement] = connection.map(_.createStatement())
+        val resultSet: Try[ResultSet] = statement.map(_.executeQuery(sql))
+        resultSet.map(rs => while (rs.next()) thePunchCnt=(rs.getInt(1)))  
+                .recover{case e => e.printStackTrace()}
+        // Cleanup
+        resultSet.foreach(_.close())
+        statement.foreach(_.close())
+        connection.foreach(_.close())
+    }
+
+    def addPunchbyCount = {
+        val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        // database credentials
+        val db_usr  = "root"
+        val db_pass = "1q2w3e4r"
+        //SQL and Connection
+        Class.forName("com.mysql.cj.jdbc.Driver")
+        val conn = DriverManager.getConnection(db_addy, db_usr, db_pass)
+        val insertSql = """
+            |INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID)
+            |VALUES (?,?,?);
+            """.stripMargin
+
+        val preparedStmt: PreparedStatement = conn.prepareStatement(insertSql)
+
+        preparedStmt.setString (1, theDate)
+        preparedStmt.setString (2, theTime)
+        preparedStmt.setInt    (3, theUID)
+        //for testing: println(preparedStmt)
+        preparedStmt.execute
+        preparedStmt.close()
+    }
+
 //Fin
 } 
 
