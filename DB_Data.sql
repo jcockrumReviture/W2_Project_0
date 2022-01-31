@@ -9,6 +9,9 @@ VALUES
     ("SUNDAY","BiWeekly","1",1111),
     ("FRIDAY","Weekly","1",2222);    
 
+SELECT PunchID, TSEntryDate, TSEntryTime FROM TSPunches WHERE TSEntryDate = '1/30/2022' AND fk_EmpID = 1111;
+UPDATE TSPunches SET TSEntryTime = '08:00' WHERE PunchID = 363; 
+
 INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID)
 VALUES ("11-29-2021","08:00",1111);
 INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID)
