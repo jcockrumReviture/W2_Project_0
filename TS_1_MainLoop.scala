@@ -1,14 +1,16 @@
 
 import java.sql._
 import java.time._
-import scala.io.StdIn._
 import scala.util.Try
+import scala.io.StdIn._
 
 class  tsMainLoop(val theUID: Int) {
     //Class Var
-    var exLoop  : Boolean = true
-    val passDate  = LocalDate.now
-    var niceName  = ""
+    var exLoop   : Boolean = true
+    val passDate : String  = ""
+    var niceName : String  = ""
+
+    passDate  = (LocalDate.now).toString
     getNiceName    
 
     println()
@@ -27,7 +29,7 @@ class  tsMainLoop(val theUID: Int) {
         //proc the i
 
         i match {
-            case "1"  => println(s"TS2+ $passDate")//TS_2_Punch( passDate )
+            case "1"  => New TS_2A_InPunch(theUID,passDate)
             case "2"  => {
                 println("    1 Correct Current Timesheet")
                 println("    2 Enter a Date")
@@ -125,13 +127,11 @@ class  tsMainLoop(val theUID: Int) {
         val db_usr  = "root"
         val db_pass = "1q2w3e4r"
         //SQL and Connection
-
         val sql =  s"SELECT CONCAT(LastName,' ',FirstName) AS nicename FROM tsuser WHERE EmpID = $theUID"
         Class.forName("com.mysql.cj.jdbc.Driver")
         val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
         val statement: Try[Statement] = connection.map(_.createStatement())
         val resultSet: Try[ResultSet] = statement.map(_.executeQuery(sql))
-
         resultSet.map(rs => while (rs.next()) niceName=(rs.getString(1)))  
                 .recover{case e => e.printStackTrace()}
         // Cleanup
