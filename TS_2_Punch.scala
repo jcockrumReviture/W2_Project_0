@@ -3,30 +3,33 @@ import java.time._
 import scala.util.Try
 
 class TS_2A_InPunch(val theUID: Int, val theDate: String) {
-    val theTime: Stirng = ""
+    var theTime: String = ""
     var thePunchCnt: Int = 0
     var formOfSQL: String = ""
-    val theTimeforMath=LocalTime.now
+    val cTime=LocalTime.now
+    val cHour = cTime.getHour()
+    val cMin = cTime.getMinute()
 
-    theTime = (LocalTime.now).toString
+    theTime = (cHour).toString + ":" + (cMin).toString
+
 //get Punch Count
     getPunchCount
 //Select and insert Punch
     thePunchCnt match {
-        case "0"  => {
+        case 0  => {
             addPunchbyCount
             println("You have Clocked in ")
         }
-        case "1"  => {
-
+        case 1  => {
+            addPunchbyCount
             println("You have Clocked out for Lunch ")
         }
-        case "2"  => {
+        case 2  => {
             addPunchbyCount
             println("You have Clocked in from Lunch")
         //TODO: Da Maths You have xx:XX remaining time today
         }
-        case "3"  => {
+        case 3  => {
             addPunchbyCount
             println("You have Clocked out for the Day ")
         //TODO: Da Maths: You worked X Hours
@@ -59,18 +62,22 @@ class TS_2A_InPunch(val theUID: Int, val theDate: String) {
         val db_usr  = "root"
         val db_pass = "1q2w3e4r"
         //SQL and Connection
-        val formOfSQL = s"INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID) VALUES ($theDate,$theTime,$theUID);"
         Class.forName("com.mysql.cj.jdbc.Driver")
-        val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
-        val statement: Try[Statement] = connection.map(_.createStatement())
-        val resultSet: Try[ResultSet] = statement.map(_.executeQuery(formOfSQL))
-        resultSet.map(rs => while (rs.next()) thePunchCnt=(rs.getInt(1)))  
-                .recover{case e => e.printStackTrace()}
-        // Cleanup
-        resultSet.foreach(_.close())
-        statement.foreach(_.close())
-        connection.foreach(_.close())
+        val conn = DriverManager.getConnection(db_addy, db_usr, db_pass)
+        val insertSql = """
+            |INSERT INTO TSPunches (TSEntryDate,TSEntryTime,fk_EmpID)
+            |VALUES (?,?,?);
+            """.stripMargin
 
+        val preparedStmt: PreparedStatement = conn.prepareStatement(insertSql)
+
+        preparedStmt.setString (1, theDate)
+        preparedStmt.setString (2, theTime)
+        preparedStmt.setInt    (3, theUID)
+        //for testing:
+        println(preparedStmt)
+        preparedStmt.execute
+        preparedStmt.close()
     }
 
 //Fin

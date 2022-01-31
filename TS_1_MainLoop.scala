@@ -7,7 +7,7 @@ import scala.io.StdIn._
 class  tsMainLoop(val theUID: Int) {
     //Class Var
     var exLoop   : Boolean = true
-    val passDate : String  = ""
+    var passDate : String  = ""
     var niceName : String  = ""
 
     passDate  = (LocalDate.now).toString
@@ -29,7 +29,7 @@ class  tsMainLoop(val theUID: Int) {
         //proc the i
 
         i match {
-            case "1"  => New TS_2A_InPunch(theUID,passDate)
+            case "1"  => new TS_2A_InPunch(theUID,passDate)
             case "2"  => {
                 println("    1 Correct Current Timesheet")
                 println("    2 Enter a Date")
