@@ -33,17 +33,17 @@ class  tsMainLoop(val theUID: Int) {
         //proc the i
 
         i match {
-            case "1"  => new TS_2A_InPunch(theUID,passDate)
+            case "1"  => new TS_2_InPunch(theUID,passDate)
             case "2"  => {
                 println("    1 Correct Current Timesheet")
                 println("    2 Enter a Date")
                 val j = readLine("  Please Choose: ")
                 j match {
-                    case "1"  => println(s"TS3 + $passDate")//TS_3_Hours( passDate )
+                    case "1"  => new TS_3_InHours(theUID,passDate)
                     case "2"  => {
                     val newDate = readLine("Enter Date as 'm/d/yyyy' Please: ")
                     //TODO val passDate = LocalDate.parse(newDate)
-                    println(s"TS3 + $newDate")//TS_3_Hours( passDate )
+                     new TS_3_InHours(theUID,newDate)
                     }
                 }
             }   

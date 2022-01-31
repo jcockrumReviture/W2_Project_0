@@ -2,7 +2,7 @@ import java.sql._
 import java.time._
 import scala.util.Try
 
-class TS_2A_InPunch(val theUID: Int, val theDate: String) {
+class TS_2_InPunch(val theUID: Int, val theDate: String) {
     var theTime: String = ""
     var thePunchCnt: Int = 0
     var formOfSQL: String = ""
@@ -58,7 +58,7 @@ class TS_2A_InPunch(val theUID: Int, val theDate: String) {
         connection.foreach(_.close())
     }
 
-    def addPunchbyCount {
+    def addPunchbyCount = {
         val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
         // database credentials
         val db_usr  = "root"

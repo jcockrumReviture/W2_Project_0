@@ -1,8 +1,16 @@
+
+import java.sql._
+import java.time._
+import scala.util.Try
+import scala.io.StdIn._
+
 class TS_3_InHours(val theUID: Int, val theDate: String) {
 
+     var thePunchCnt =0
 
 // Show all the punches for the date
-// val sql =  s"SELECT TSEntryDate,TSEntryTime,fk_EmpID FROM TSPunches WHERE TSEntryDate = '$theDate' AND fk_EmpID = $theUID ;"
+    getAllPunches
+
 
 //select a punch and change it
     thePunchCnt match {
@@ -33,48 +41,45 @@ class TS_3_InHours(val theUID: Int, val theDate: String) {
         val db_usr  = "root"
         val db_pass = "1q2w3e4r"
         //SQL and Connection
-        val sql =  s"SELECT COUNT(TSEntryDate) FROM TSPunches WHERE TSEntryDate = '$theDate' AND fk_EmpID = $theUID ;"
+        // SELECT PunchID, TSEntryDate, TSEntryTime FROM TSPunches WHERE TSEntryDate = '1/30/2022' AND fk_EmpID = 1111;
+        val sql =  s"SELECT PunchID, TSEntryDate, TSEntryTime FROM TSPunches WHERE TSEntryDate = '$theDate' AND fk_EmpID = $theUID ;"
         //for testing:  println (s"get Count: $sql")
         Class.forName("com.mysql.cj.jdbc.Driver")
         val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
         val statement: Try[Statement] = connection.map(_.createStatement())
         val resultSet: Try[ResultSet] = statement.map(_.executeQuery(sql))
-        resultSet.map(rs => while (rs.next()) thePunchCnt=(rs.getInt(1)))  
-                .recover{case e => e.printStackTrace()}
+        //resultSet.map(rs => while (rs.next)   println(rs.getInt(1)) ) 
+        println("Punch ID    Date     Time")
+        while ( resultSet ) {
+        val pid = resultSet.getString(1)
+        val pda = resultSet.getString(2)
+        val ptm = resultSet.getString(3)
+        println(s"$pid    $pda    $ptm")
+      }
         // Cleanup
         resultSet.foreach(_.close())
         statement.foreach(_.close())
         connection.foreach(_.close())
     }
 
-    def cngAPunch {
+    def cngAPunch = {
+        /*
         val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
         // database credentials
         val db_usr  = "root"
         val db_pass = "1q2w3e4r"
         //SQL and Connection
-        String sql = s"      WHERE TSEntryDate = '$theDate' AND fk_EmpID = $theUID ;"
+        //// UPDATE TSPunches SET TSEntryTime = '08:00' WHERE PunchID = 363; 
+        String sql = s"UPDATE TSPunches SET TSEntryTime = '08:00' WHERE PunchID = $theUID ;"
         Class.forName("com.mysql.cj.jdbc.Driver")
 
-        try (Connection conn = DriverManager.getConnection(db_addy, db_usr, db_pass);
-            Statement stmt = conn.createStatement();) {
-            stmt.executeUpdate(sql);
-            System.out.println("Database updated successfully ");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        Connection conn = DriverManager.getConnection(db_addy, db_usr, db_pass)
+        Statement stmt = conn.createStatement()
+        stmt.executeUpdate(sql)
+        System.out.println("Database updated successfully ")
+        */
     }
-
-
-
-
-    }
-
-
-
-
-    
+  
 }    
 /*  Behavior
     
