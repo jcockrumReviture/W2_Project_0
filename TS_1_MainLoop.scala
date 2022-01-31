@@ -1,12 +1,18 @@
 
-// TODO Resolve "java.sql.SQLException: No suitable driver found for jdbc:mysql"
-import java.sql.{Connection, DriverManager}
-import scala.io.StdIn._
+import java.sql._
 import java.time._
-object  tsMainLoop {
-    var exLoop  : Boolean = true;
+import scala.io.StdIn._
+import scala.util.Try
+
+class  tsMainLoop(val theUID: Int) {
+    //Class Var
+    var exLoop  : Boolean = true
     val passDate  = LocalDate.now
+    var niceName  = ""
+    getNiceName    
+
     println()
+    println(s"Welcom $niceName")
     println(s"Today is $passDate")
     do {
         println()
@@ -110,11 +116,29 @@ object  tsMainLoop {
             case _  => println("\nSelect a diffrent option please\n")
         }
     } 
-    while(exLoop);   
-    println()
-    println("Program terminated")
-    println()
-    println()
+    while(exLoop);
+// End MainLoop
+
+    def getNiceName = {
+        val db_addy = "jdbc:mysql://127.0.0.1:3306/w2_project_0"
+        // database credentials
+        val db_usr  = "root"
+        val db_pass = "1q2w3e4r"
+        //SQL and Connection
+
+        val sql =  s"SELECT CONCAT(LastName,' ',FirstName) AS nicename FROM tsuser WHERE EmpID = $theUID"
+        Class.forName("com.mysql.cj.jdbc.Driver")
+        val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
+        val statement: Try[Statement] = connection.map(_.createStatement())
+        val resultSet: Try[ResultSet] = statement.map(_.executeQuery(sql))
+
+        resultSet.map(rs => while (rs.next()) niceName=(rs.getString(1)))  
+                .recover{case e => e.printStackTrace()}
+        // Cleanup
+        resultSet.foreach(_.close())
+        statement.foreach(_.close())
+        connection.foreach(_.close())
+    }
 
 
 
