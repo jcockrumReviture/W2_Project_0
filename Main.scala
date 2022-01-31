@@ -28,9 +28,8 @@ object Main extends App {
     def user_login = {
         un1 = readLine("Enter your UserID: ").toInt
         auth_usr
-        //for testing: println(s"value of un1 is $un1 and usrTst is $usrTst")
+        //for testing:  println(s"value of un1 is $un1 and usrTst is $usrTst")
         if (un1 == usrTst){
-                //for testing: println("tsMainLoop(un1)")
                 passedAuth = true
             }else{
                 println("Please Contact a Admistrator to be added to the system") 
@@ -45,8 +44,8 @@ object Main extends App {
         val db_usr  = "root"
         val db_pass = "1q2w3e4r"
         //SQL and Connection
-        val sql =  s"SELECT $un1 FROM tsuser"
-        
+        val sql =  s"SELECT EmpID FROM TSUser WHERE EmpID = $un1 ;"
+        //for testing println(s"Query $sql")
         Class.forName("com.mysql.cj.jdbc.Driver")
         val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
         val statement: Try[Statement] = connection.map(_.createStatement())

@@ -15,6 +15,7 @@ class TS_2A_InPunch(val theUID: Int, val theDate: String) {
 //get Punch Count
     getPunchCount
 //Select and insert Punch
+    //for testing: println(s"the Punchcnt is $thePunchCnt")
     thePunchCnt match {
         case 0  => {
             addPunchbyCount
@@ -43,7 +44,8 @@ class TS_2A_InPunch(val theUID: Int, val theDate: String) {
         val db_usr  = "root"
         val db_pass = "1q2w3e4r"
         //SQL and Connection
-        val sql =  s"SELECT COUNT(TSEntryDate) FROM TSPunches WHERE TSEntryDate = $theDate AND fk_EmpID = $theUID"
+        val sql =  s"SELECT COUNT(TSEntryDate) FROM TSPunches WHERE TSEntryDate = '$theDate' AND fk_EmpID = $theUID ;"
+        //for testing:  println (s"get Count: $sql")
         Class.forName("com.mysql.cj.jdbc.Driver")
         val connection:Try[Connection]= Try(DriverManager.getConnection(db_addy, db_usr, db_pass))
         val statement: Try[Statement] = connection.map(_.createStatement())
@@ -74,8 +76,7 @@ class TS_2A_InPunch(val theUID: Int, val theDate: String) {
         preparedStmt.setString (1, theDate)
         preparedStmt.setString (2, theTime)
         preparedStmt.setInt    (3, theUID)
-        //for testing:
-        println(preparedStmt)
+        //for testing: println(preparedStmt)
         preparedStmt.execute
         preparedStmt.close()
     }

@@ -6,11 +6,15 @@ import scala.io.StdIn._
 
 class  tsMainLoop(val theUID: Int) {
     //Class Var
+    val cDate =LocalDate.now
+    val cYear = cDate.getYear()
+    val cMonth = cDate.getMonthValue()
+    val cDay = cDate.getDayOfMonth()
     var exLoop   : Boolean = true
     var passDate : String  = ""
     var niceName : String  = ""
 
-    passDate  = (LocalDate.now).toString
+    passDate  = (cMonth).toString + "/" + (cDay).toString + "/" + (cYear).toString
     getNiceName    
 
     println()
